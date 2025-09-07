@@ -6,7 +6,7 @@ const {
   getOrderById,
   getAllOrders,
   updateOrderStatus
-} = require('../controllers/OrderController.js');
+} = require('../controllers/orderController.js');
 
 const { protect } = require('../middleware/authMiddleware.js');
 const { isAdmin } = require('../middleware/adminMiddleware.js');
