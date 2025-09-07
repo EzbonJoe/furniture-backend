@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel'); // Adjust path if needed
+const User = require('../models/userModel.js'); // Adjust path if needed
 
 const protect = async (req, res, next) => {
   const authHeader = req.headers.authorization;

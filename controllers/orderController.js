@@ -1,9 +1,9 @@
-const Order = require('../models/Order');
-const cart = require('../models/Cart');
-const Product = require('../models/Product');
+const Order = require('../models/Order.js');
+const cart = require('../models/Cart.js');
+const Product = require('../models/Product.js');
 const mongoose = require('mongoose');
-const sendEmail = require('../utils/sendEmail'); // Import the sendEmail utility
-const User = require('../models/userModel'); // Import User model to fetch user details
+const sendEmail = require('../utils/sendEmail.js'); // Import the sendEmail utility
+const User = require('../models/userModel.js'); // Import User model to fetch user details
 
 const placeOrder = async (req, res) => {
   try {

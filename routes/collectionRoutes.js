@@ -7,13 +7,13 @@ const {
   createCollection,
   updateCollection,
   deleteCollection
-} = require('../controllers/collectionController');
+} = require('../controllers/collectionController.js');
 
-const { protect } = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/authMiddleware.js');
 
-const { isAdmin } = require('../middleware/adminMiddleware');
+const { isAdmin } = require('../middleware/adminMiddleware.js');
 
-const { upload } = require('../middleware/upload');
+const { upload } = require('../middleware/upload.js');
 
 router.get('/', getAllCollections);
 router.post('/',upload.single('backgroundImage'), protect, isAdmin, createCollection); 

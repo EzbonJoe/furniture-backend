@@ -6,10 +6,10 @@ const {
   getOrderById,
   getAllOrders,
   updateOrderStatus
-} = require('../controllers/OrderController');
+} = require('../controllers/OrderController.js');
 
-const { protect } = require('../middleware/authMiddleware');
-const { isAdmin } = require('../middleware/adminMiddleware');
+const { protect } = require('../middleware/authMiddleware.js');
+const { isAdmin } = require('../middleware/adminMiddleware.js');
 
 router.post('/place', protect, placeOrder); // Place a new order
 router.get('/my-orders', protect, getMyOrders); // Get orders for the authenticated user

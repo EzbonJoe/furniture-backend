@@ -1,7 +1,7 @@
-const User = require('../models/userModel');
-const Order = require('../models/Order');
-const Wishlist = require('../models/Wishlist');
-const Cart = require('../models/Cart');
+const User = require('../models/userModel.js');
+const Order = require('../models/Order.js');
+const Wishlist = require('../models/Wishlist.js');
+const Cart = require('../models/Cart.js');
 
 const normalizeStatus = (status) => {
   const mapping = {

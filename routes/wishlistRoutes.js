@@ -1,6 +1,6 @@
 const express = require('express');
-const { addToWishlist, getWishlist, removeFromWishlist } = require('../controllers/wishlistController');
-const { protect } = require('../middleware/authMiddleware');
+const { addToWishlist, getWishlist, removeFromWishlist } = require('../controllers/wishlistController.js');
+const { protect } = require('../middleware/authMiddleware.js');
 const router = express.Router();
 
 // Route to add a product to the wishlist

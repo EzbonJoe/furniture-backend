@@ -9,9 +9,9 @@ const {
   removeItemFromCart,
   clearCart,
   updateDeliveryOptionId
-} = require('../controllers/cartControllers');
+} = require('../controllers/cartControllers.js');
 
-const { protect } = require('../middleware/authMiddleware');
+const { protect } = require('../middleware/authMiddleware.js');
 
 router.post('/', protect, createNewCart); // Create a new cart
 router.patch('/update-delivery-option', protect, updateDeliveryOptionId); // Update delivery option ID for an item

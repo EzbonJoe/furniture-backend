@@ -9,9 +9,9 @@ const {
   deleteProduct
 } = require('../controllers/productController');
 
-const { protect } = require('../middleware/authMiddleware');
-const { isAdmin } = require('../middleware/adminMiddleware');
-const { upload } = require('../middleware/upload');
+const { protect } = require('../middleware/authMiddleware.js');
+const { isAdmin } = require('../middleware/adminMiddleware.js');
+const { upload } = require('../middleware/upload.js');
 
 router.get('/', getAllProducts);
 router.post('/', upload.array('images', 10), protect, isAdmin, createProduct);

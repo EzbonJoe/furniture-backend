@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const { getUserProfile, updateUserProfile, getAllUsers, updateUser, deleteUser, changePassword, logoutAllDevices } = require('../controllers/userController');
-const { protect } = require('../middleware/authMiddleware');
+const { getUserProfile, updateUserProfile, getAllUsers, updateUser, deleteUser, changePassword, logoutAllDevices } = require('../controllers/userController.js');
+const { protect } = require('../middleware/authMiddleware.js');
 
 // Route to get user profile
 router.get('/profile', protect, getUserProfile);

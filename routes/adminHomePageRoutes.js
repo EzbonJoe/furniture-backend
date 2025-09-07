@@ -1,8 +1,8 @@
 const {
   getDashboardStats, getSalesOverTime
-} = require("../controllers/adminHomePageController");
-const { protect } = require("../middleware/authMiddleware");
-const { isAdmin } = require("../middleware/adminMiddleware");
+} = require("../controllers/adminHomePageController.js");
+const { protect } = require("../middleware/authMiddleware.js");
+const { isAdmin } = require("../middleware/adminMiddleware.js");
 const express = require("express");
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-const Collection = require('../models/Collection'); 
+const Collection = require('../models/Collection.js'); 
 const slugify = require('slugify');
 const fs = require('fs');
 const path = require('path');

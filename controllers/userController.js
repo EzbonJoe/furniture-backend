@@ -1,8 +1,8 @@
-const User = require('../models/userModel');
+const User = require('../models/userModel.js');
 const bcrypt = require('bcrypt');
-const Order = require('../models/Order'); 
-const Cart = require('../models/Cart'); 
-const Wishlist = require('../models/Wishlist'); 
+const Order = require('../models/Order.js'); 
+const Cart = require('../models/Cart.js'); 
+const Wishlist = require('../models/Wishlist.js'); 
 
 const getAllUsers = async (req, res) => {
   try {
