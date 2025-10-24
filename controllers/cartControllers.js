@@ -26,12 +26,17 @@ const getCartById = async(req, res) => {
       return res.status(200).json({ cartItems: [] });
     } 
 
-    const cartItems = cart.items.map(item => ({
+    const cartItems = cart.items
+    .filter(item => item.product !== null) // skip deleted products
+    .map(item => ({
       _id: item._id,
       product: item.product,
       quantity: item.quantity,
       deliveryOptionId: item.deliveryOptionId
     }));
+
+    cart.items = cartItems;
+    await cart.save();
 
     res.status(200).json({ cartItems }); 
   }catch(error){
