@@ -38,18 +38,58 @@ const placeOrder = async (req, res) => {
 
     await newOrder.save();
 
-    // Send confirmation email
+    const orderItemsHtml = cartItems.items.map(item => {
+      const subtotal = (item.product.priceCents * item.quantity / 100).toFixed(2);
+      return `
+        <tr>
+          <td style="padding:8px; border:1px solid #ddd;">${item.product.name}</td>
+          <td style="padding:8px; border:1px solid #ddd; text-align:center;">${item.quantity}</td>
+          <td style="padding:8px; border:1px solid #ddd; text-align:right;">$${(item.product.priceCents/100).toFixed(2)}</td>
+          <td style="padding:8px; border:1px solid #ddd; text-align:right;">$${subtotal}</td>
+        </tr>
+      `;
+    }).join('');
+
+    // Send professional email
     await sendEmail(
       user.email,
-      "Order Confirmation",
-      `<h3>Hi ${user.name || 'Customer'},</h3>
-      <p>Your order has been placed successfully.</p>
-      <p>Order ID: ${newOrder._id}</p>
-      <p>Total: $${newOrder.totalAmount}</p>
-      <p>We will notify you when it's being processed.</p>
-      <br><p>Thank you for shopping with us!</p>`
-    );
+      "Your Order Confirmation - Furniture Haven",
+      `
+      <div style="font-family:Arial,sans-serif; max-width:600px; margin:auto; padding:20px; border:1px solid #eee; border-radius:8px;">
+        <h2 style="color:#333;">Thank you for your order, ${user.name || 'Customer'}!</h2>
+        <p>We’re excited to let you know your order has been placed successfully.</p>
 
+        <h3>Order Details</h3>
+        <p><strong>Order ID:</strong> ${newOrder._id}</p>
+        <p><strong>Payment Method:</strong> ${paymentMethod}</p>
+        <p><strong>Shipping Address:</strong> ${shippingAddress}</p>
+
+        <table style="width:100%; border-collapse:collapse; margin-top:15px;">
+          <thead>
+            <tr>
+              <th style="padding:8px; border:1px solid #ddd; text-align:left;">Product</th>
+              <th style="padding:8px; border:1px solid #ddd; text-align:center;">Qty</th>
+              <th style="padding:8px; border:1px solid #ddd; text-align:right;">Price</th>
+              <th style="padding:8px; border:1px solid #ddd; text-align:right;">Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${orderItemsHtml}
+            <tr>
+              <td colspan="3" style="padding:8px; border:1px solid #ddd; text-align:right;"><strong>Total</strong></td>
+              <td style="padding:8px; border:1px solid #ddd; text-align:right;"><strong>$${newOrder.totalAmount.toFixed(2)}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p style="margin-top:20px;">We will notify you once your order is shipped.</p>
+        <p>Thank you for shopping with <strong>Furniture Haven</strong>!</p>
+
+        <hr style="margin-top:20px; border:none; border-top:1px solid #eee;">
+        <p style="font-size:12px; color:#999;">If you did not place this order, please contact our support immediately.</p>
+      </div>
+      `
+    );
 
     // Clear the cart after placing the order
     cartItems.items = [];
