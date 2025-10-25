@@ -9,7 +9,7 @@ const sendEmail = async (to, subject, htmlContent) => {
         sender: { email: process.env.SENDER_EMAIL },
         to: [{ email: to }],
         subject: subject,
-        htmlContent: htmlContent,
+        htmlContent: htmlContent, 
       },
       {
         headers: {
